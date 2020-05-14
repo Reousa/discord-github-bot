@@ -32,7 +32,7 @@ namespace DiscordGit
 			var pattern = "#[0-9]*";
 			var x = Regex.Matches(message.Content, pattern);
 			foreach(Match match in Regex.Matches(message.Content, pattern))
-				await context.Channel.SendMessageAsync($"https://github.com/godotengine/godot/issues/{match.Value.Substring(1)}");
+				await context.Channel.SendMessageAsync($"{repoLink}/{match.Value.Substring(1)}");
 		}
 	}
 }
