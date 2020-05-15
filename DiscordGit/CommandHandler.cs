@@ -31,8 +31,12 @@ namespace DiscordGit
 			if (message == null) return;
 			var pattern = "#[0-9]*";
 			var x = Regex.Matches(message.Content, pattern);
-			foreach(Match match in Regex.Matches(message.Content, pattern))
-				await context.Channel.SendMessageAsync($"{repoLink}/{match.Value.Substring(1)}");
+			foreach (Match match in Regex.Matches(message.Content, pattern))
+			{
+				// quick hack to ignore discord tags
+				if(match.Value.Length < 10)
+					await context.Channel.SendMessageAsync($"{repoLink}/{match.Value.Substring(1)}");
+			}
 		}
 	}
 }
